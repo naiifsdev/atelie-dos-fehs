@@ -7,6 +7,7 @@ const categories = [
   {
     id: 'bolos',
     label: 'Bolos personalizados',
+    shortLabel: 'Bolos',
     icon: CakeSlice,
     title: 'Bolos que contam a história da sua festa',
     description: 'Tema, cores, nome, idade e acabamento são combinados para criar um bolo único, do tamanho certo para a sua celebração.',
@@ -36,6 +37,7 @@ const categories = [
   {
     id: 'doces',
     label: 'Doces especiais',
+    shortLabel: 'Doces',
     icon: Sparkles,
     title: 'Docinhos que completam a mesa',
     description: 'Produção artesanal para festas, presentes e aquele momento em que dá vontade de comer algo realmente especial.',
@@ -65,6 +67,7 @@ const categories = [
   {
     id: 'cookies',
     label: 'Cookies & brownies',
+    shortLabel: 'Cookies',
     icon: Cookie,
     title: 'Crocante por fora, recheado por dentro',
     description: 'Opções intensas, macias e generosas para presentear, montar kits ou adoçar o café da tarde.',
@@ -94,6 +97,7 @@ const categories = [
   {
     id: 'sazonais',
     label: 'Sazonais & presentes',
+    shortLabel: 'Sazonais',
     icon: Gift,
     title: 'Edições especiais para presentear',
     description: 'Produtos que acompanham a época do ano e aparecem por tempo limitado. As opções e a agenda mudam conforme a data.',
@@ -135,34 +139,35 @@ function chooseProduct(item: CatalogItem) {
 
 export function ProductCatalog() {
   return (
-    <section id="cardapio" className="relative bg-[#402722] py-24 text-[#fff9f5] sm:py-32">
+    <section id="cardapio" className="relative scroll-mt-20 bg-[#402722] py-20 text-[#fff9f5] sm:py-32">
       <div className="pointer-events-none absolute inset-0 opacity-[.06] [background-image:radial-gradient(#fff_1px,transparent_1px)] [background-size:22px_22px]" />
-      <div className="relative mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
+      <div className="relative mx-auto max-w-[1320px] px-4 sm:px-8 lg:px-12">
         <div className="grid gap-8 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
           <div>
             <p className="text-sm font-bold uppercase tracking-[.22em] text-[#e5a69a]">Cardápio artesanal</p>
-            <h2 className="mt-4 max-w-xl font-serif text-[clamp(3rem,5vw,5.4rem)] font-semibold leading-[.93] tracking-[-.05em]">
+            <h2 className="mt-4 max-w-xl font-serif text-[clamp(2.75rem,12vw,3.2rem)] font-semibold leading-[.95] tracking-[-.05em] sm:text-[clamp(3.2rem,5vw,5.4rem)] sm:leading-[.93]">
               Escolha pelo <span className="italic text-[#e5a69a]">tipo de desejo.</span>
             </h2>
           </div>
-          <p className="max-w-2xl text-lg leading-8 text-[#dfcbc5] lg:justify-self-end">
+          <p className="max-w-2xl text-base leading-7 text-[#dfcbc5] sm:text-lg sm:leading-8 lg:justify-self-end">
             Explore as categorias, conheça as opções e selecione o produto que mais combina com a ocasião. Todos os itens são feitos sob encomenda.
           </p>
         </div>
 
-        <Tabs defaultValue="bolos" className="mt-12 gap-7">
-          <div className="-mx-5 overflow-x-auto px-5 pb-2 sm:mx-0 sm:px-0">
-            <TabsList className="h-auto min-w-max gap-2 rounded-full border border-white/10 bg-white/5 p-1.5">
+        <Tabs defaultValue="bolos" className="mt-10 gap-6 sm:mt-12 sm:gap-7">
+          <div className="pb-1 sm:overflow-x-auto sm:pb-2">
+            <TabsList className="!grid h-auto !w-full grid-cols-2 gap-2 rounded-[1.4rem] border border-white/10 bg-white/5 p-1.5 group-data-horizontal/tabs:!h-auto sm:!inline-flex sm:!w-max sm:min-w-max sm:rounded-full">
               {categories.map((category) => {
                 const Icon = category.icon;
                 return (
                   <TabsTrigger
                     key={category.id}
                     value={category.id}
-                    className="h-12 flex-none gap-2 rounded-full px-4 text-[#d7c0ba] hover:text-white data-active:bg-[#fff5ee] data-active:text-[#5b332d] sm:px-5"
+                    className="h-11 min-w-0 flex-none touch-manipulation gap-2 rounded-full px-3 text-xs text-[#d7c0ba] hover:text-white data-active:bg-[#fff5ee] data-active:text-[#5b332d] sm:h-12 sm:px-5 sm:text-sm"
                   >
                     <Icon className="size-4" aria-hidden="true" />
-                    {category.label}
+                    <span className="sm:hidden">{category.shortLabel}</span>
+                    <span className="hidden sm:inline">{category.label}</span>
                   </TabsTrigger>
                 );
               })}
@@ -171,22 +176,22 @@ export function ProductCatalog() {
 
           {categories.map((category) => (
             <TabsContent key={category.id} value={category.id} className="catalog-panel">
-              <div className="grid overflow-hidden rounded-[2rem] border border-white/10 bg-[#4b2d27] shadow-[0_28px_80px_rgba(20,8,6,.18)] lg:grid-cols-[.78fr_1.22fr]">
-                <div className="catalog-photo relative min-h-[440px] overflow-hidden lg:min-h-[680px]">
+              <div className="grid overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#4b2d27] shadow-[0_28px_80px_rgba(20,8,6,.18)] sm:rounded-[2rem] lg:grid-cols-[.78fr_1.22fr]">
+                <div className="catalog-photo relative min-h-[360px] overflow-hidden sm:min-h-[440px] lg:min-h-[680px]">
                   <img src={category.image} alt={category.alt} className="absolute inset-0 h-full w-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#2b1511]/90 via-[#2b1511]/12 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-7 sm:p-9">
+                  <div className="absolute inset-x-0 bottom-0 p-5 sm:p-9">
                     <span className="inline-flex rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.16em] text-[#71433b] backdrop-blur">
                       Foto real do portfólio
                     </span>
-                    <h3 className="mt-4 max-w-lg font-serif text-4xl font-semibold leading-tight tracking-[-.04em] sm:text-5xl">{category.title}</h3>
-                    <p className="mt-4 max-w-lg leading-7 text-[#f0dcd6]">{category.description}</p>
+                    <h3 className="mt-4 max-w-lg font-serif text-3xl font-semibold leading-tight tracking-[-.04em] sm:text-5xl">{category.title}</h3>
+                    <p className="mt-3 max-w-lg text-sm leading-6 text-[#f0dcd6] sm:mt-4 sm:text-base sm:leading-7">{category.description}</p>
                   </div>
                 </div>
 
                 <div className="grid gap-px bg-white/10 md:grid-cols-3 lg:grid-cols-1">
                   {category.products.map((product, index) => (
-                    <article key={product.name} className="catalog-item group flex flex-col bg-[#fff8f3] p-6 text-[#4a2d27] sm:p-7 lg:min-h-[225px] lg:flex-row lg:items-center lg:gap-8">
+                    <article key={product.name} className="catalog-item group flex flex-col bg-[#fff8f3] p-5 text-[#4a2d27] sm:p-7 lg:min-h-[225px] lg:flex-row lg:items-center lg:gap-8">
                       <span className="grid size-11 shrink-0 place-items-center rounded-full bg-[#efd3cb] font-serif font-bold text-[#a2443d]">0{index + 1}</span>
                       <div className="mt-5 min-w-0 flex-1 lg:mt-0">
                         <h4 className="font-serif text-2xl font-bold tracking-[-.03em]">{product.name}</h4>
@@ -214,10 +219,10 @@ export function ProductCatalog() {
           ))}
         </Tabs>
 
-        <div className="mt-12 rounded-[2rem] bg-[#fff5ee] p-6 text-[#4a2d27] sm:p-8 lg:flex lg:items-center lg:justify-between lg:gap-10">
+        <div className="mt-10 rounded-[1.5rem] bg-[#fff5ee] p-5 text-[#4a2d27] sm:mt-12 sm:rounded-[2rem] sm:p-8 lg:flex lg:items-center lg:justify-between lg:gap-10">
           <div className="max-w-xl">
             <p className="text-xs font-bold uppercase tracking-[.2em] text-[#b64f47]">Sabores que aparecem no portfólio</p>
-            <h3 className="mt-2 font-serif text-3xl font-bold tracking-[-.03em]">Massa, recheio e acabamento do seu jeito</h3>
+            <h3 className="mt-2 font-serif text-2xl font-bold tracking-[-.03em] sm:text-3xl">Massa, recheio e acabamento do seu jeito</h3>
             <p className="mt-3 leading-7 text-[#74554e]">A disponibilidade varia conforme o produto e a data. A combinação final é confirmada no WhatsApp.</p>
           </div>
           <div className="mt-7 flex max-w-2xl flex-wrap gap-2 lg:mt-0 lg:justify-end">

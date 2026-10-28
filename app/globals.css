@@ -130,10 +130,24 @@
   }
   body {
     font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+    overflow-x: hidden;
   }
   ::selection {
     background: #e7aea2;
     color: #3f241f;
+  }
+}
+
+@media (max-width: 639px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
   }
 }
 

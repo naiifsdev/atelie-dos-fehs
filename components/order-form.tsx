@@ -47,11 +47,11 @@ export function OrderForm() {
     'h-12 rounded-xl border-[#ddc0b8] bg-[#fffdfb] px-4 text-[#4b2d27] shadow-sm focus-visible:ring-[#b64f47]/20';
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-[2rem] border border-[#ead1ca] bg-white p-5 shadow-[0_24px_70px_rgba(80,42,35,.10)] sm:p-8">
+    <form onSubmit={handleSubmit} className="rounded-[1.5rem] border border-[#ead1ca] bg-white p-4 shadow-[0_24px_70px_rgba(80,42,35,.10)] sm:rounded-[2rem] sm:p-8">
       <div className="mb-7 flex items-start justify-between gap-4">
         <div>
           <p className="text-xs font-bold uppercase tracking-[.18em] text-[#b64f47]">Seu pedido, bem explicadinho</p>
-          <h3 className="mt-2 font-serif text-3xl font-bold tracking-[-.03em] text-[#3f241f]">Conte como você imagina</h3>
+          <h3 className="mt-2 font-serif text-2xl font-bold tracking-[-.03em] text-[#3f241f] sm:text-3xl">Conte como você imagina</h3>
         </div>
         <span className="grid size-11 shrink-0 place-items-center rounded-full bg-[#f6dfd8] text-[#b64f47]">
           <MessageCircle className="size-5" aria-hidden="true" />
