@@ -61,9 +61,11 @@ export default function Home() {
       <header className="absolute inset-x-0 top-0 z-20">
         <div className="mx-auto flex max-w-[1320px] items-center justify-between px-5 py-5 sm:px-8 lg:px-12">
           <a href="#inicio" className="group flex items-center gap-3" aria-label="Ateliê dos Fehs — início">
-            <span className="grid size-11 place-items-center rounded-full border border-[#f1c9c0] bg-[#fffaf7] font-serif text-lg font-bold italic text-[#6d322b] shadow-sm transition-transform group-hover:-rotate-3">
-              AF
-            </span>
+            <img
+              src="/logo-atelie.png"
+              alt="Logo do Ateliê dos Fehs"
+              className="size-12 rounded-full border-2 border-[#fffaf7] object-cover shadow-md transition-transform group-hover:-rotate-3"
+            />
             <span className="leading-tight">
               <span className="block font-serif text-lg font-bold text-[#3f241f]">Ateliê dos Fehs</span>
               <span className="block text-[10px] font-semibold uppercase tracking-[0.19em] text-[#8a625b]">Confeitaria artesanal</span>
@@ -347,7 +349,11 @@ export default function Home() {
           <div className="grid gap-12 lg:grid-cols-[1.1fr_.9fr_.8fr]">
             <div>
               <div className="flex items-center gap-3">
-                <span className="grid size-12 place-items-center rounded-full bg-[#f2d8d0] font-serif text-lg font-bold italic text-[#6d322b]">AF</span>
+                <img
+                  src="/logo-atelie.png"
+                  alt="Logo do Ateliê dos Fehs"
+                  className="size-16 rounded-full border-2 border-[#f2d8d0] object-cover shadow-lg"
+                />
                 <div>
                   <p className="font-serif text-2xl font-bold">Ateliê dos Fehs</p>
                   <p className="text-xs uppercase tracking-[.18em] text-[#caa59c]">Confeitaria artesanal</p>

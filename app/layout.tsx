@@ -3,6 +3,10 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://atelie-dos-fehs.naiifs.chatgpt.site'),
+  icons: {
+    icon: '/logo-atelie.png',
+    apple: '/logo-atelie.png',
+  },
   title: 'Ateliê dos Fehs | Bolos Decorados em Carapicuíba',
   description:
     'Bolos personalizados, doces artesanais e ovos de Páscoa feitos sob encomenda em Carapicuíba.',
