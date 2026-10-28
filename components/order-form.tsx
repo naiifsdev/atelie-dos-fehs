@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { ArrowUpRight, MessageCircle } from 'lucide-react';
 import { Field, FieldGroup, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
@@ -8,6 +8,20 @@ import { NativeSelect, NativeSelectOption } from '@/components/ui/native-select'
 import { Textarea } from '@/components/ui/textarea';
 
 export function OrderForm() {
+  const [product, setProduct] = useState('');
+  const [catalogItem, setCatalogItem] = useState('');
+
+  useEffect(() => {
+    function handleCatalogSelection(event: Event) {
+      const detail = (event as CustomEvent<{ product: string; itemName: string }>).detail;
+      setProduct(detail.product);
+      setCatalogItem(detail.itemName);
+    }
+
+    window.addEventListener('catalog:select-product', handleCatalogSelection);
+    return () => window.removeEventListener('catalog:select-product', handleCatalogSelection);
+  }, []);
+
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -18,12 +32,13 @@ export function OrderForm() {
       `*Data da ocasião:* ${data.get('data')}`,
       `*Ocasião:* ${data.get('ocasiao')}`,
       `*Produto:* ${data.get('produto')}`,
+      catalogItem ? `*Item do cardápio:* ${catalogItem}` : null,
       `*Tamanho/quantidade:* ${data.get('tamanho')}`,
       `*Sabor:* ${data.get('sabor')}`,
       `*Ideia e detalhes:* ${data.get('detalhes')}`,
       '',
       'Podem me ajudar com as opções e valores?',
-    ].join('\n');
+    ].filter((line): line is string => line !== null).join('\n');
 
     window.open(`https://wa.me/5511991567182?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
   }
@@ -44,6 +59,12 @@ export function OrderForm() {
       </div>
 
       <FieldGroup className="gap-4">
+        {catalogItem && (
+          <div className="rounded-xl border border-[#e1beb5] bg-[#fff4ef] px-4 py-3 text-sm text-[#68453e]">
+            <span className="font-bold text-[#a2443d]">Selecionado no cardápio:</span> {catalogItem}
+          </div>
+        )}
+
         <div className="grid gap-4 sm:grid-cols-2">
           <Field>
             <FieldLabel htmlFor="nome" className="text-[#5a3933]">Seu nome</FieldLabel>
@@ -62,7 +83,17 @@ export function OrderForm() {
           </Field>
           <Field>
             <FieldLabel htmlFor="produto" className="text-[#5a3933]">O que você quer encomendar?</FieldLabel>
-            <NativeSelect id="produto" name="produto" required className="w-full [&_select]:h-12 [&_select]:rounded-xl [&_select]:border-[#ddc0b8] [&_select]:bg-[#fffdfb] [&_select]:px-4">
+            <NativeSelect
+              id="produto"
+              name="produto"
+              required
+              value={product}
+              onChange={(event) => {
+                setProduct(event.target.value);
+                setCatalogItem('');
+              }}
+              className="w-full [&_select]:h-12 [&_select]:rounded-xl [&_select]:border-[#ddc0b8] [&_select]:bg-[#fffdfb] [&_select]:px-4"
+            >
               <NativeSelectOption value="">Selecione uma opção</NativeSelectOption>
               <NativeSelectOption value="Bolo personalizado">Bolo personalizado</NativeSelectOption>
               <NativeSelectOption value="Doces / brigadeiros">Doces / brigadeiros</NativeSelectOption>

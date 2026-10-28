@@ -9,50 +9,23 @@ import {
   Heart,
   MapPin,
   MessageCircle,
-  Sparkles,
   Star,
 } from 'lucide-react';
 import { OrderForm } from '@/components/order-form';
+import { ProductCatalog } from '@/components/product-catalog';
 
 const whatsapp =
   'https://wa.me/5511991567182?text=Oi%2C%20Ateli%C3%AA%20dos%20Fehs!%20Quero%20fazer%20uma%20encomenda.';
 
-const products = [
-  {
-    number: '01',
-    title: 'Bolos personalizados',
-    description: 'Temas, cores e acabamentos pensados para aniversários, mesversários, casamentos e outras celebrações.',
-    accent: 'bg-[#e9b6aa]',
-  },
-  {
-    number: '02',
-    title: 'Doces para a festa',
-    description: 'Brigadeiros e doces artesanais para montar uma mesa bonita, gostosa e cheia de carinho.',
-    accent: 'bg-[#d4a45d]',
-  },
-  {
-    number: '03',
-    title: 'Cookies & brownies',
-    description: 'Opções macias, intensas e perfeitas para presentear, complementar a festa ou adoçar o dia.',
-    accent: 'bg-[#9d6b55]',
-  },
-  {
-    number: '04',
-    title: 'Sazonais & presentes',
-    description: 'Ovos de Páscoa, cones trufados e criações especiais em edições limitadas ao longo do ano.',
-    accent: 'bg-[#c48586]',
-  },
-];
-
 const gallery = [
-  ['/gallery/bolo-rosa.png', 'Bolo rosa personalizado com decoração temática'],
-  ['/gallery/bolo-frozen.png', 'Bolo personalizado inspirado em personagens de inverno'],
-  ['/gallery/bolo-stitch.png', 'Bolo azul personalizado com tema divertido'],
-  ['/gallery/bolo-heroi.png', 'Bolo azul e vermelho com tema de super-herói'],
-  ['/gallery/bolo-minnie.png', 'Bolo colorido com tema infantil'],
-  ['/gallery/bolo-elegante.png', 'Bolo artesanal com acabamento delicado'],
-  ['/gallery/bolo-delicado.png', 'Bolo claro com decoração personalizada'],
-  ['/gallery/bolo-colorido.png', 'Bolo vibrante para comemoração infantil'],
+  ['/catalog/bolo-aranha.webp', 'Bolo personalizado azul com tema de super-herói'],
+  ['/catalog/doces-gourmet.webp', 'Seleção de brigadeiros gourmet artesanais'],
+  ['/catalog/bolo-frozen.webp', 'Bolo personalizado com tema de personagens de inverno'],
+  ['/catalog/cookie-bueno.webp', 'Cookie artesanal recheado de Bueno'],
+  ['/catalog/bolo-gisele.webp', 'Bolo colorido personalizado para aniversário infantil'],
+  ['/catalog/doces-azuis.webp', 'Doces artesanais azuis e brigadeiros para festa'],
+  ['/catalog/coxinha-morango.webp', 'Coxinha de morango com brigadeiro e chocolate'],
+  ['/catalog/bolo-pistache.webp', 'Bolo artesanal de pistache com acabamento em chantilly'],
 ] as const;
 
 export default function Home() {
@@ -138,7 +111,7 @@ export default function Home() {
           <div className="relative mx-auto w-full max-w-[560px] lg:mr-0">
             <div className="absolute -inset-4 rotate-3 rounded-[44%_56%_48%_52%/47%_41%_59%_53%] bg-[#e8b9ae]" aria-hidden="true" />
             <div className="relative aspect-[4/5] overflow-hidden rounded-[44%_56%_48%_52%/47%_41%_59%_53%] border-[10px] border-[#fffaf6] bg-[#c6897d] shadow-[0_28px_80px_rgba(93,47,40,.22)]">
-              <img src="/hero-cake.png" alt="Bolo temático personalizado do Ateliê dos Fehs" className="h-full w-full object-cover" />
+              <img src="/catalog/bolo-floral.webp" alt="Bolo personalizado com flores feito pelo Ateliê dos Fehs" className="h-full w-full object-cover" />
               <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#3f241f]/65 to-transparent" />
               <p className="absolute bottom-7 left-8 right-8 font-serif text-2xl font-semibold italic text-white">Cada detalhe pensado para a sua história.</p>
             </div>
@@ -158,80 +131,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="cardapio" className="relative bg-[#402722] py-24 text-[#fff9f5] sm:py-32">
-        <div className="pointer-events-none absolute inset-0 opacity-[.06] [background-image:radial-gradient(#fff_1px,transparent_1px)] [background-size:22px_22px]" />
-        <div className="relative mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
-          <div className="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
-            <div>
-              <p className="text-sm font-bold uppercase tracking-[.22em] text-[#e5a69a]">Nosso cardápio</p>
-              <h2 className="mt-4 max-w-xl font-serif text-[clamp(3rem,5vw,5.4rem)] font-semibold leading-[.93] tracking-[-.05em]">
-                Tem um doce para <span className="italic text-[#e5a69a]">cada momento.</span>
-              </h2>
-            </div>
-            <p className="max-w-2xl text-lg leading-8 text-[#dfcbc5] lg:justify-self-end">
-              Produção artesanal, feita sob encomenda e com atenção a cada detalhe. Escolha a categoria e conte sua ideia — ajudamos a montar a combinação ideal para a sua celebração.
-            </p>
-          </div>
-
-          <div className="mt-14 grid gap-px overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 md:grid-cols-2">
-            {products.map((product) => (
-              <article key={product.title} className="group relative min-h-[280px] bg-[#402722] p-7 transition-colors hover:bg-[#4b2d27] sm:p-9">
-                <div className="flex items-start justify-between gap-6">
-                  <span className={`grid size-14 place-items-center rounded-2xl ${product.accent} font-serif text-lg font-bold text-[#402722]`}>
-                    {product.number}
-                  </span>
-                  <ArrowUpRight className="size-6 text-[#c9988d] transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" aria-hidden="true" />
-                </div>
-                <h3 className="mt-10 font-serif text-3xl font-semibold tracking-[-.03em]">{product.title}</h3>
-                <p className="mt-4 max-w-lg leading-7 text-[#cdb5af]">{product.description}</p>
-              </article>
-            ))}
-          </div>
-
-          <div className="mt-16 rounded-[2rem] bg-[#fff5ee] p-6 text-[#4a2d27] sm:p-9 lg:flex lg:items-center lg:justify-between lg:gap-10">
-            <div className="max-w-xl">
-              <p className="text-xs font-bold uppercase tracking-[.2em] text-[#b64f47]">Combinações queridinhas</p>
-              <h3 className="mt-2 font-serif text-3xl font-bold tracking-[-.03em]">Um sabor que combina com a sua ideia</h3>
-              <p className="mt-3 leading-7 text-[#74554e]">Consulte a disponibilidade e as opções do período. Ajudamos você a escolher massa, recheio e cobertura.</p>
-            </div>
-            <div className="mt-7 flex max-w-2xl flex-wrap gap-2 lg:mt-0 lg:justify-end">
-              {['Chocolate & brigadeiro', 'Ninho com morango', 'Prestígio', 'Doce de leite', 'Beijinho', 'Opções sob consulta'].map((flavor) => (
-                <span key={flavor} className="rounded-full border border-[#e1beb5] bg-white px-4 py-2.5 text-sm font-bold text-[#64423b]">
-                  {flavor}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#f8e8e2] py-20 sm:py-24">
-        <div className="mx-auto grid max-w-[1320px] gap-8 px-5 sm:px-8 lg:grid-cols-[1fr_1.2fr] lg:items-center lg:px-12">
-          <div className="relative overflow-hidden rounded-[2rem] bg-[#b64f47] p-8 text-white shadow-[0_20px_60px_rgba(139,61,54,.18)] sm:p-11">
-            <Sparkles className="absolute -right-5 -top-7 size-36 text-white/10" aria-hidden="true" />
-            <p className="text-xs font-bold uppercase tracking-[.2em] text-[#ffd8cf]">Datas especiais</p>
-            <h2 className="mt-3 max-w-md font-serif text-4xl font-bold leading-tight tracking-[-.04em] sm:text-5xl">Páscoa, presentes e edições sazonais</h2>
-            <p className="mt-5 max-w-lg leading-7 text-[#ffeae5]">Ovos recheados, cones trufados e criações que aparecem por tempo limitado. Acompanhe as novidades e reserve com antecedência.</p>
-            <a href="https://instagram.com/ateliedosfehs" target="_blank" rel="noreferrer" className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-white px-6 font-bold text-[#9d4039] transition hover:-translate-y-0.5">
-              Ver novidades no Instagram <ArrowUpRight className="size-4" />
-            </a>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-            {[
-              ['Ovos de Páscoa', 'Cascas e recheios artesanais para presentear ou saborear.'],
-              ['Cones trufados', 'Pequenos presentes cheios de sabor e capricho.'],
-              ['Kits especiais', 'Combinações sazonais montadas em edições limitadas.'],
-            ].map(([title, text], index) => (
-              <article key={title} className={`rounded-[1.7rem] border border-[#e5c6bd] bg-[#fffaf6] p-6 ${index === 2 ? 'col-span-2 sm:col-span-1' : ''}`}>
-                <span className="grid size-10 place-items-center rounded-full bg-[#f3d9d1] font-serif font-bold text-[#a2443d]">0{index + 1}</span>
-                <h3 className="mt-7 font-serif text-2xl font-bold tracking-[-.03em] text-[#4b2e28]">{title}</h3>
-                <p className="mt-3 text-sm leading-6 text-[#7b5d56]">{text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ProductCatalog />
 
       <section id="galeria" className="bg-[#fffaf6] py-24 sm:py-32">
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
