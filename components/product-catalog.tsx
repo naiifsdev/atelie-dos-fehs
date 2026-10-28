@@ -170,9 +170,9 @@ export function ProductCatalog() {
           </div>
 
           {categories.map((category) => (
-            <TabsContent key={category.id} value={category.id}>
+            <TabsContent key={category.id} value={category.id} className="catalog-panel">
               <div className="grid overflow-hidden rounded-[2rem] border border-white/10 bg-[#4b2d27] shadow-[0_28px_80px_rgba(20,8,6,.18)] lg:grid-cols-[.78fr_1.22fr]">
-                <div className="relative min-h-[440px] overflow-hidden lg:min-h-[680px]">
+                <div className="catalog-photo relative min-h-[440px] overflow-hidden lg:min-h-[680px]">
                   <img src={category.image} alt={category.alt} className="absolute inset-0 h-full w-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#2b1511]/90 via-[#2b1511]/12 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-7 sm:p-9">
@@ -186,7 +186,7 @@ export function ProductCatalog() {
 
                 <div className="grid gap-px bg-white/10 md:grid-cols-3 lg:grid-cols-1">
                   {category.products.map((product, index) => (
-                    <article key={product.name} className="group flex flex-col bg-[#fff8f3] p-6 text-[#4a2d27] sm:p-7 lg:min-h-[225px] lg:flex-row lg:items-center lg:gap-8">
+                    <article key={product.name} className="catalog-item group flex flex-col bg-[#fff8f3] p-6 text-[#4a2d27] sm:p-7 lg:min-h-[225px] lg:flex-row lg:items-center lg:gap-8">
                       <span className="grid size-11 shrink-0 place-items-center rounded-full bg-[#efd3cb] font-serif font-bold text-[#a2443d]">0{index + 1}</span>
                       <div className="mt-5 min-w-0 flex-1 lg:mt-0">
                         <h4 className="font-serif text-2xl font-bold tracking-[-.03em]">{product.name}</h4>
