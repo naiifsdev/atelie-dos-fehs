@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://atelie-dos-fehs.naiifs.chatgpt.site'),
+  metadataBase: new URL('https://atelie-dos-fehs.vercel.app'),
   icons: {
     icon: '/logo-atelie.png',
     apple: '/logo-atelie.png',
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     locale: 'pt_BR',
     images: [
       {
-        url: 'https://atelie-dos-fehs.naiifs.chatgpt.site/og.png',
+        url: 'https://atelie-dos-fehs.vercel.app/og.png',
         width: 1734,
         height: 907,
         alt: 'Ateliê dos Fehs — Bolos feitos à mão. Do seu jeito.',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: 'Ateliê dos Fehs | Bolos Decorados em Carapicuíba',
     description:
       'Bolos personalizados e doces artesanais feitos sob encomenda, com sabor, capricho e pontualidade.',
-    images: ['https://atelie-dos-fehs.naiifs.chatgpt.site/og.png'],
+    images: ['https://atelie-dos-fehs.vercel.app/og.png'],
   },
 };
 
